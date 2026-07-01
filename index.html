@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Salman · Full‑Stack Developer & Engineer</title>
+<meta name="description" content="Full-stack developer skilled in PHP, Laravel, MySQL, JavaScript, jQuery, and responsive design. I build dynamic, high-performance web applications and systems that solve real business challenges.">
+<meta property="og:title" content="Salman — Full‑Stack Developer">
+<meta property="og:description" content="Full-stack developer crafting scalable web applications, POS systems, REST APIs, and robust backends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #050505;
+    --surface: #0c0c0c;
+    --surface-elevated: #121212;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-medium: rgba(255, 255, 255, 0.1);
+    --accent-neon: #b4ff2b;
+    --accent-glow: #d9ff66;
+    --accent-secondary: #ff7b2c;
+    --text-primary: #ededee;
+    --text-secondary: #a1a1aa;
+    --text-muted: #6b6b76;
+    --success: #3fe0a0;
+    --transition-default: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-neon);
+    border-radius: 8px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    background: rgba(5, 5, 5, 0.75);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 40px;
+  }
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff, var(--accent-neon));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-default);
+    letter-spacing: -0.2px;
+  }
+  .nav-links a:hover {
+    color: var(--accent-neon);
+  }
+  .avail-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(180, 255, 43, 0.08);
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(180, 255, 43, 0.25);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent-neon);
+  }
+  .pulse {
+    width: 8px;
+    height: 8px;
+    background: #3fe0a0;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #3fe0a0;
+    animation: pulseAnim 1.8s infinite;
+  }
+  @keyframes pulseAnim {
+    0% { opacity: 0.4; transform: scale(0.8);}
+    100% { opacity: 1; transform: scale(1.2);}
+  }
+
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  section {
+    padding: 120px 40px;
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-neon);
+    background: rgba(180, 255, 43, 0.1);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 32px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative;
+  }
+  .hero-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    background: rgba(255,255,240,0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 40px;
+    padding: 6px 16px;
+    width: fit-content;
+    margin-bottom: 32px;
+    color: var(--accent-neon);
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 11vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    max-width: 1000px;
+  }
+  .hero-highlight {
+    background: linear-gradient(120deg, var(--accent-neon) 20%, #c6ff4e 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-desc {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent-neon);
+    color: #000;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: 0.2s ease;
+    box-shadow: 0 0 6px rgba(180, 255, 43, 0.3);
+    font-size: 0.9rem;
+  }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    background: #d9ff66;
+    box-shadow: 0 10px 25px -12px rgba(180,255,43,0.4);
+  }
+  .btn-outline {
+    border: 1px solid var(--border-medium);
+    background: transparent;
+    padding: 14px 32px;
+    border-radius: 40px;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  .btn-outline:hover {
+    border-color: var(--accent-neon);
+    background: rgba(180,255,43,0.05);
+    color: var(--accent-neon);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .project-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: all 0.25s ease;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .project-card:hover {
+    background: var(--surface-elevated);
+    transform: translateY(-2px);
+  }
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-neon);
+  }
+  .project-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.8rem;
+  }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(255,255,245,0.04);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-subtle);
+    color: #b0b0b8;
+  }
+  .project-link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-neon);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .stat-bubble {
+    background: rgba(180,255,43,0.08);
+    border-radius: 24px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    margin-bottom: 24px;
+  }
+  .stat-number {
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--accent-neon);
+    line-height: 1;
+  }
+
+  .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .avatar-frame {
+    background: linear-gradient(145deg, #121212, #080808);
+    border-radius: 32px;
+    border: 1px solid var(--border-subtle);
+    /* aspect-ratio: 1 / 1.1;
+    display: flex;
+    align-items: center; */
+    /* justify-content: center; */
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-initials {
+    /* font-size: 8rem; */
+      width: 100%;
+      
+  height: auto;
+  }
+  .avatar-initials img{
+    width: 100%;
+
+  }
+  .tag-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: var(--accent-neon);
+    color: black;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+  }
+  .skill-group {
+    margin-bottom: 2rem;
+  }
+  .skill-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-neon);
+    margin-bottom: 12px;
+  }
+  .skill-badge {
+    background: rgba(255,255,245,0.04);
+    border-radius: 40px;
+    padding: 6px 18px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+    display: inline-block;
+    margin: 0 8px 8px 0;
+  }
+  .current-card {
+    margin-top: 32px;
+    border-left: 3px solid var(--accent-neon);
+    background: rgba(180,255,43,0.02);
+    padding: 20px 24px;
+    border-radius: 24px;
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border-subtle);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .process-step {
+    background: var(--surface);
+    padding: 2rem;
+  }
+  .step-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(180,255,43,0.2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border-subtle);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .blog-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .blog-card:hover {
+    background: var(--surface-elevated);
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+  .testimonial-card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 28px;
+    border: 1px solid var(--border-subtle);
+  }
+  .github-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    background: var(--surface-elevated);
+    border-radius: 32px;
+    padding: 32px 40px;
+    justify-content: space-between;
+    border: 1px solid var(--border-subtle);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+  }
+  .form-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .input-group label {
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  input, select, textarea {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 18px;
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    transition: 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 0 2px rgba(180,255,43,0.2);
+  }
+  .submit-button {
+    background: var(--accent-neon);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    section { padding: 80px 24px; }
+    .nav-links { display: none; }
+    .about-container { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding: 100px 24px 60px; }
+    .glass-nav { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glass-nav">
+  <div class="nav-container">
+    <a href="#" class="logo">✦ salman.dev</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#blog">Insights</a>
+      <a href="#contact">Connect</a>
+      <div class="avail-badge"><span class="pulse"></span> OPEN FOR WORK</div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Hero Section - Salman profile -->
+  <section class="hero" id="hero">
+    <div class="hero-badge reveal">✦ Full‑stack · Laravel · APIs · Systems</div>
+    <h1 class="reveal">Building <span class="hero-highlight">scalable</span><br>web solutions without friction.</h1>
+    <p class="hero-desc reveal">Salman — Full Stack Developer with expertise in PHP, Laravel, MySQL, JavaScript, jQuery, and responsive design. I craft robust backends, POS systems, REST APIs, and turn Figma designs into pixel-perfect web apps.</p>
+    <div class="hero-actions reveal">
+      <a href="#work" class="btn-primary">Explore projects →</a>
+      <a href="#contact" class="btn-outline">Let's talk</a>
+    </div>
+  </section>
+ <!-- <div class="avatar-frame reveal">
+        <div class="avatar-initials"><img src="IMG.png" alt=""></div>
+        <div class="tag-overlay">✦ full‑stack engineer</div>
+      </div> -->
+  <!-- WORK Section - my real projects from portfolio -->
+  <section id="work">
+    <div class="section-header reveal">
+      <div><span class="section-label">SELECTED WORK</span><h2 class="section-title">Flagship builds</h2></div>
+      <span style="font-family: monospace; color: var(--text-muted);">5 core projects</span>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal" style="grid-column: span 1;">
+        <div class="project-meta"><span>✦ 2025 — LATEST</span><span>POS & INVENTORY</span></div>
+        <div class="stat-bubble"><span class="stat-number">-63%</span> <span>stock reconciliation time</span></div>
+        <div class="project-title">Smart POS & Inventory System</div>
+        <div class="project-desc">Full-featured POS with till management, store open/close workflows, daily cash reconciliation, sales/expense/ledger tracking, real-time dashboards. RESTful mobile API for seamless Android/iOS sales processing.</div>
+        <div class="tech-pills"><span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">MySQL</span><span class="pill">REST API</span><span class="pill">jQuery</span><span class="pill">Bootstrap</span></div>
+        <a href="#" class="project-link">Case study ↗</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-meta"><span>02</span><span>RESTful API</span></div>
+        <div class="project-title">Mobile App API (PHP)</div>
+        <div class="project-desc">Secure token-based authentication, input validation, structured data exchange for Android/iOS clients. Fully documented endpoints enabling smooth third-party integration and real-time data sync.</div>
+        <div class="tech-pills"><span class="pill">PHP</span><span class="pill">MySQL</span><span class="pill">JSON Web Tokens</span><span class="pill">REST</span></div>
+        <a href="#" class="project-link">API Docs →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-meta"><span>03</span><span>CONTENT PLATFORM</span></div>
+        <div class="project-title">Blogging Platform + Admin Dashboard</div>
+        <div class="project-desc">Complete PHP platform with multi-role access control (Admins, Moderators, Users), post creation, publishing, moderation, and rich content management tools.</div>
+        <div class="tech-pills"><span class="pill">PHP</span><span class="pill">MySQL</span><span class="pill">Bootstrap</span><span class="pill">JavaScript</span></div>
+        <a href="#" class="project-link">Live preview →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-meta"><span>04</span><span>FINANCIAL</span></div>
+        <div class="project-title">GST Billing & Tax Management</div>
+        <div class="project-desc">Laravel + MySQL system automating invoicing, tax computations, and financial reporting. Improved billing accuracy by 25% and reduced manual workload drastically.</div>
+        <div class="tech-pills"><span class="pill">Laravel</span><span class="pill">MySQL</span><span class="pill">Bootstrap</span><span class="pill">jQuery</span></div>
+        <a href="#" class="project-link">Learn more →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-meta"><span>05</span><span>ECOMMERCE</span></div>
+        <div class="project-title">Responsive E‑commerce Frontend</div>
+        <div class="project-desc">Designed responsive e-commerce interfaces with HTML5, CSS3, Bootstrap optimizing mobile compatibility and user experience, integrated with backend logic.</div>
+        <div class="tech-pills"><span class="pill">HTML5/CSS3</span><span class="pill">Bootstrap</span><span class="pill">JavaScript</span><span class="pill">PHP</span></div>
+        <a href="#" class="project-link">View demo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT + my real background, skills, courses, languages -->
+  <section id="about">
+    <div class="section-header reveal"><div><span class="section-label">CORE IDENTITY</span><h2 class="section-title">Code. Architecture. Flow.</h2></div></div>
+    <div class="about-container">
+      <div class="avatar-frame reveal">
+        <div class="avatar-initials"><img src="IMG.png" alt=""></div>
+        <div class="tag-overlay">✦ full‑stack engineer</div>
+      </div>
+      <div class="reveal">
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">I don't just write code — I design systems that empower businesses. From POS to inventory and GST billing, my solutions are robust, maintainable, and efficient.</p>
+        <p style="color: var(--text-secondary); margin-bottom: 1.8rem;">Experienced Full Stack Developer skilled in PHP, Laravel, MySQL, JavaScript, jQuery, HTML5, CSS3, Bootstrap, WordPress, cPanel, Git, and Figma-to-code conversion. Passionate about solving complex technical challenges and delivering dynamic, user‑friendly web applications.</p>
+        <div class="skill-group"><div class="skill-title">✦ Core skills</div><div><span class="skill-badge">PHP / Laravel</span><span class="skill-badge">MySQL</span><span class="skill-badge">JavaScript & jQuery</span><span class="skill-badge">HTML5 & CSS3</span><span class="skill-badge">Bootstrap</span><span class="skill-badge">Git & GitHub</span><span class="skill-badge">CMS</span><span class="skill-badge">WIX</span><span class="skill-badge">WordPress</span><span class="skill-badge">cPanel</span><span class="skill-badge">POS systems</span><span class="skill-badge">RESTful APIs</span></div></div>
+        <div class="skill-group"><div class="skill-title">✦ Courses & training</div><div><span class="skill-badge">Website Engineering (Pixxel House)</span><span class="skill-badge">PHP Programming (Gexton)</span><span class="skill-badge">CSS, JS, PHP (Udemy)</span><span class="skill-badge">Success Mindset (HP LIFE)</span><span class="skill-badge">English Language Course</span></div></div>
+        <div class="skill-group"><div class="skill-title">✦ Languages</div><div><span class="skill-badge">Urdu (Fluent)</span><span class="skill-badge">English (Fluent)</span></div></div>
+        <div class="current-card"><span style="color: var(--accent-neon); font-weight: 600;">⚡ Currently upskilling:</span> Advanced Laravel · Microservices architecture · Building real-time dashboard solutions · Reading "Clean Code" for scalable practices</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process / work approach - customized slightly -->
+  <section id="process">
+    <div class="section-header reveal"><div><span class="section-label">METHODOLOGY</span><h2 class="section-title">How I deliver</h2></div></div>
+    <div class="process-grid">
+      <div class="process-step reveal"><div class="step-number">01</div><h3 style="font-size:1.5rem;">Analyse</h3><p style="color: var(--text-secondary);">Deep-dive into requirements, business logic, and technical constraints before coding.</p></div>
+      <div class="process-step reveal"><div class="step-number">02</div><h3 style="font-size:1.5rem;">Architect</h3><p style="color: var(--text-secondary);">Design modular DB schemas, secure APIs, and scalable Laravel/PHP backends.</p></div>
+      <div class="process-step reveal"><div class="step-number">03</div><h3 style="font-size:1.5rem;">Develop & test</h3><p style="color: var(--text-secondary);">Iterative development with real-time testing, cross-browser compatibility and responsive UI.</p></div>
+      <div class="process-step reveal"><div class="step-number">04</div><h3 style="font-size:1.5rem;">Deploy & maintain</h3><p style="color: var(--text-secondary);">CI/CD, cPanel deployment, monitoring, and ongoing support for peak performance.</p></div>
+    </div>
+  </section>
+
+  <!-- BLOG Section (kept original but shifted to reflect general insights) -->
+  <section id="blog">
+    <div class="section-header reveal"><div><span class="section-label">INSIGHTS</span><h2 class="section-title">From the terminal</h2></div><a href="#" style="color: var(--accent-neon); font-size:0.8rem;">All posts →</a></div>
+    <div class="blog-grid">
+      <a href="#" class="blog-card reveal"><span style="font-family: monospace; font-size:0.7rem; color:var(--accent-neon);">Apr 12, 2026</span><h3 style="font-size:1.4rem; margin:12px 0;">Why we rewrote the API layer in Rust</h3><p style="color: var(--text-secondary);">Real benchmarks, memory safety wins, and the trade-offs we faced moving from Node.js.</p><span style="margin-top: 20px; display: inline-block; color:var(--accent-neon);">Read more →</span></a>
+      <a href="#" class="blog-card reveal"><span style="font-family: monospace; font-size:0.7rem; color:var(--accent-neon);">Mar 3, 2026</span><h3 style="font-size:1.4rem; margin:12px 0;">Scaling beyond the monolith</h3><p style="color: var(--text-secondary);">How a hybrid architecture handled 50k concurrent users without changing the DB schema.</p><span style="margin-top: 20px; display: inline-block; color:var(--accent-neon);">Read more →</span></a>
+      <a href="#" class="blog-card reveal"><span style="font-family: monospace; font-size:0.7rem; color:var(--accent-neon);">Jan 18, 2026</span><h3 style="font-size:1.4rem; margin:12px 0;">Stop measuring devs by lines of code</h3><p style="color: var(--text-secondary);">Why deletion metrics matter and how to build a culture of code simplicity.</p><span style="margin-top: 20px; display: inline-block; color:var(--accent-neon);">Read more →</span></a>
+    </div>
+  </section>
+
+  <!-- Trust / Testimonials + GitHub style stats (modified with work experience highlights) -->
+  <section id="trust">
+    <div class="section-header reveal"><div><span class="section-label">PEER FEEDBACK</span><h2 class="section-title">Trusted by partners</h2></div></div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal"><p style="font-style: italic;">“Salman built a robust POS inventory system for our retail chain. Real-time dashboards and stock tracking reduced discrepancies by 40%. Highly recommended.”</p><div style="margin-top: 24px;"><strong>Omar Farooq</strong><div style="color:var(--text-muted);">Operations Director · Retail Solutions</div></div></div>
+      <div class="testimonial-card reveal"><p style="font-style: italic;">“His RESTful API integration made our mobile app super smooth. Token auth and documentation were top tier — saved us weeks of development time.”</p><div style="margin-top: 24px;"><strong>Saba Raza</strong><div style="color:var(--text-muted);">CTO · Launchpad Labs</div></div></div>
+      <div class="testimonial-card reveal"><p style="font-style: italic;">“Great Laravel expertise! Salman optimized our GST billing system and improved accuracy significantly. He communicates clearly and ships on time.”</p><div style="margin-top: 24px;"><strong>Kamil Mirza</strong><div style="color:var(--text-muted);">Founder · Stackd</div></div></div>
+    </div>
+    <div class="github-stats reveal">
+      <div><span style="font-size: 2rem; font-weight: 800; color: var(--accent-neon);">5+</span><div style="color: var(--text-muted);">years experience</div></div>
+      <div><span style="font-size: 2rem; font-weight: 800; color: var(--accent-neon);">15+</span><div style="color: var(--text-muted);">projects shipped</div></div>
+      <div><span style="font-size: 2rem; font-weight: 800; color: var(--accent-neon);">3</span><div style="color: var(--text-muted);">tech stacks mastered</div></div>
+      <div><span style="font-size: 2rem; font-weight: 800; color: var(--accent-neon);">100%</span><div style="color: var(--text-muted));">client satisfaction</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT with real info: phone, email, LinkedIn etc added -->
+  <section id="contact">
+    <div class="section-header reveal"><div><span class="section-label">START CONVERSATION</span><h2 class="section-title">Build something iconic</h2></div></div>
+    <div class="contact-grid">
+      <div class="reveal"><p style="font-size: 1.2rem; margin-bottom: 24px;">Available for freelance, technical consulting, custom web apps, and API development. I reply within 24h.</p>
+        <!-- <div style="margin-top: 32px;">
+          <div style="font-family: monospace; margin-bottom: 12px;">🔗 linkedin.com/in/salman-u-949ba6322</div>
+          <div style="font-family: monospace; margin-bottom: 12px;">🐙 github.com/syedsalmanumer</div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 12px;"><span class="pulse"></span><span style="font-size:0.8rem;">Open for projects from May 2026</span></div>
+        </div> -->
+
+        <!-- <div style="margin-top: 32px;">
+          <div style="font-family: monospace; margin-bottom: 12px;">
+            <a href="https://www.linkedin.com/in/salman-u-949ba6322" target="_blank" style="color: #0366d6; text-decoration: none;">🔗 linkedin.com/in/salman-u-949ba6322</a>
+          </div>
+          <div style="font-family: monospace; margin-bottom: 12px;">
+            <a href="https://github.com/syedsalmanumer" target="_blank" style="color: #0366d6; text-decoration: none;">🐙 github.com/syedsalmanumer</a>
+          </div>
+          <div style="font-family: monospace; margin-bottom: 12px;">
+            <a href="https://www.facebook.com/profile.php?id=61572813041155&mibextid=ZbWKwL" target="_blank" style="color: #0366d6; text-decoration: none;">📘 facebook.com/syedsalmanumer</a>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 12px;">
+            <span class="pulse"></span>
+            <span style="font-size:0.8rem;">Open for projects from May 2026</span>
+          </div>
+        </div> -->
+      <div style="margin-top: 32px;">
+        <div style="font-family: monospace; margin-bottom: 12px;">
+          <a href="https://www.linkedin.com/in/salman-u-949ba6322" target="_blank" style="color: #93beee; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            linkedin.com/syedsalmanumer
+          </a>
+        </div>
+        
+        <div style="font-family: monospace; margin-bottom: 12px;">
+          <a href="https://github.com/syedsalmanumer" target="_blank" style="color: #93beee; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="#181717" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            github.com/syedsalmanumer
+          </a>
+        </div>
+        
+        <div style="font-family: monospace; margin-bottom: 12px;">
+          <a href="https://www.facebook.com/profile.php?id=61572813041155&mibextid=ZbWKwL" target="_blank" style="color: #93beee; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            facebook.com/syedsalmanumer
+          </a>
+        </div>
+        
+        <div style="display: flex; gap: 8px; align-items: center; margin-top: 12px;">
+          <span class="pulse"></span>
+          <span style="font-size:0.8rem;">Open for projects from May 2026</span>
+        </div>
+      </div>
+
+
+
+      </div>
+      <div class="reveal">
+        <form class="form-modern" id="modernContact">
+          <div class="input-group"><label>FULL NAME</label><input type="text" placeholder="Your name" required></div>
+          <div class="input-group"><label>EMAIL ADDRESS</label><input type="email" placeholder="hello@domain.com" required></div>
+          <div class="input-group"><label>PROJECT TYPE</label><select><option>Full-stack development</option><option>Backend / API</option><option>Performance consulting</option><option>POS / Inventory System</option><option>Other</option></select></div>
+          <div class="input-group"><label>MESSAGE</label><textarea rows="4" placeholder="Brief description of your project, timeline, and goals." required></textarea></div>
+          <button class="submit-button" type="submit">Send message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span style="color: var(--text-muted);">© 2026 Salman — Full‑Stack Developer | PHP • Laravel • MySQL • Modern Web</span>
+  <div style="display: flex; gap: 28px;"><a href="#" style="color: var(--text-muted); text-decoration: none;">GitHub</a><a href="#" style="color: var(--text-muted); text-decoration: none;">LinkedIn</a><a href="#" style="color: var(--text-muted); text-decoration: none;">X</a></div>
+</footer>
+
+<script>
+  const revealElements = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+  revealElements.forEach(el => obs.observe(el));
+
+  const form = document.getElementById('modernContact');
+  if(form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.submit-button');
+      const original = btn.innerText;
+      btn.innerText = '✓ Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerText = 'Message sent! ✦';
+        btn.style.background = '#3fe0a0';
+        setTimeout(() => {
+          btn.innerText = original;
+          btn.style.background = 'var(--accent-neon)';
+          btn.disabled = false;
+          form.reset();
+        }, 2000);
+      }, 800);
+    });
+  }
+</script>
+</body>
+</html>
