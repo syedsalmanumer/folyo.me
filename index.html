@@ -747,7 +747,7 @@
 <script type="text/javascript">
   (function() {
     emailjs.init({
-      publicKey: "yh75K3mmwf5F2iqR1",
+      publicKey: "test",
     });
   })();
 
@@ -759,7 +759,7 @@
     btn.innerHTML = '⏳ Sending...';
     btn.disabled = true;
 
-    emailjs.sendForm('service_4tjassr', 'template_aa0z7im', this)
+    emailjs.sendForm('test', 'test', this)
       .then(() => {
         btn.innerHTML = '✅ Message sent! ✦';
         btn.style.background = '#3fe0a0';
